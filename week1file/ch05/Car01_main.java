@@ -20,10 +20,14 @@ public class Car01_main {
 		System.out.println(car.toString()); //주소 -> hashCode
 		System.out.println(engine.company); //객체 출력
 		System.out.println(tier.company); //객체 출력
+		
 	}
-	void m() {System.out.println("m()");};
+	void m() {System.out.println("m()");}
 	void m1() {System.out.println("m1()");}
 	void m2() {System.out.println("m2()");}
+	
+	//@annotation => 1.공지 2.검사
+	
 	
 	
 }
