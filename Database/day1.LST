@@ -1,0 +1,791 @@
+SQL> conn hr/hr
+ERROR:
+ORA-28000: the account is locked 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> show user
+USER is ""
+SQL> conn system
+Connected.
+SQL> show user
+USER is "SYSTEM"
+SQL> alter user hr
+  2  account unlock;
+
+User altered.
+
+SQL> conn hr/hr
+ERROR:
+ORA-01017: invalid username/password; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> conn system
+Connected.
+SQL> alter user hr
+  2  identified by hr
+  3  account unlock;
+
+User altered.
+
+SQL> conn hr/hr
+Connected.
+SQL> show user
+USER is "HR"
+SQL> select username
+  2  from dba_users;
+from dba_users
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> set linesize 200
+SQL> select *
+  2  from tab
+  3  ;
+
+TNAME                                                        TABTYPE         CLUSTERID                                                                                                                  
+------------------------------------------------------------ -------------- ----------                                                                                                                  
+COUNTRIES                                                    TABLE                                                                                                                                      
+DEPARTMENTS                                                  TABLE                                                                                                                                      
+EMPLOYEES                                                    TABLE                                                                                                                                      
+EMP_DETAILS_VIEW                                             VIEW                                                                                                                                       
+JOBS                                                         TABLE                                                                                                                                      
+JOB_HISTORY                                                  TABLE                                                                                                                                      
+LOCATIONS                                                    TABLE                                                                                                                                      
+REGIONS                                                      TABLE                                                                                                                                      
+
+8 rows selected.
+
+SQL> desc jobs
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ JOB_ID                                                                                                            NOT NULL VARCHAR2(10)
+ JOB_TITLE                                                                                                         NOT NULL VARCHAR2(35)
+ MIN_SALARY                                                                                                                 NUMBER(6)
+ MAX_SALARY                                                                                                                 NUMBER(6)
+
+SQL> desc employees
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ EMPLOYEE_ID                                                                                                       NOT NULL NUMBER(6)
+ FIRST_NAME                                                                                                                 VARCHAR2(20)
+ LAST_NAME                                                                                                         NOT NULL VARCHAR2(25)
+ EMAIL                                                                                                             NOT NULL VARCHAR2(25)
+ PHONE_NUMBER                                                                                                               VARCHAR2(20)
+ HIRE_DATE                                                                                                         NOT NULL DATE
+ JOB_ID                                                                                                            NOT NULL VARCHAR2(10)
+ SALARY                                                                                                                     NUMBER(8,2)
+ COMMISSION_PCT                                                                                                             NUMBER(2,2)
+ MANAGER_ID                                                                                                                 NUMBER(6)
+ DEPARTMENT_ID                                                                                                              NUMBER(4)
+
+SQL> select employee_id, first_name
+  2  from employee;
+from employee
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> select employee_id, first_name
+  2  from employees;
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        174 Ellen                                                                                                                                                                                       
+        166 Sundar                                                                                                                                                                                      
+        130 Mozhe                                                                                                                                                                                       
+        105 David                                                                                                                                                                                       
+        204 Hermann                                                                                                                                                                                     
+        116 Shelli                                                                                                                                                                                      
+        167 Amit                                                                                                                                                                                        
+        172 Elizabeth                                                                                                                                                                                   
+        192 Sarah                                                                                                                                                                                       
+        151 David                                                                                                                                                                                       
+        129 Laura                                                                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        169 Harrison                                                                                                                                                                                    
+        185 Alexis                                                                                                                                                                                      
+        187 Anthony                                                                                                                                                                                     
+        148 Gerald                                                                                                                                                                                      
+        154 Nanette                                                                                                                                                                                     
+        110 John                                                                                                                                                                                        
+        188 Kelly                                                                                                                                                                                       
+        119 Karen                                                                                                                                                                                       
+        142 Curtis                                                                                                                                                                                      
+        102 Lex                                                                                                                                                                                         
+        186 Julia                                                                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        189 Jennifer                                                                                                                                                                                    
+        160 Louise                                                                                                                                                                                      
+        104 Bruce                                                                                                                                                                                       
+        147 Alberto                                                                                                                                                                                     
+        193 Britney                                                                                                                                                                                     
+        109 Daniel                                                                                                                                                                                      
+        202 Pat                                                                                                                                                                                         
+        197 Kevin                                                                                                                                                                                       
+        181 Jean                                                                                                                                                                                        
+        170 Tayler                                                                                                                                                                                      
+        121 Adam                                                                                                                                                                                        
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        190 Timothy                                                                                                                                                                                     
+        135 Ki                                                                                                                                                                                          
+        183 Girard                                                                                                                                                                                      
+        206 William                                                                                                                                                                                     
+        199 Douglas                                                                                                                                                                                     
+        178 Kimberely                                                                                                                                                                                   
+        108 Nancy                                                                                                                                                                                       
+        163 Danielle                                                                                                                                                                                    
+        152 Peter                                                                                                                                                                                       
+        201 Michael                                                                                                                                                                                     
+        205 Shelley                                                                                                                                                                                     
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        118 Guy                                                                                                                                                                                         
+        103 Alexander                                                                                                                                                                                   
+        175 Alyssa                                                                                                                                                                                      
+        179 Charles                                                                                                                                                                                     
+        195 Vance                                                                                                                                                                                       
+        122 Payam                                                                                                                                                                                       
+        115 Alexander                                                                                                                                                                                   
+        156 Janette                                                                                                                                                                                     
+        100 Steven                                                                                                                                                                                      
+        101 Neena                                                                                                                                                                                       
+        173 Sundita                                                                                                                                                                                     
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        137 Renske                                                                                                                                                                                      
+        127 James                                                                                                                                                                                       
+        165 David                                                                                                                                                                                       
+        177 Jack                                                                                                                                                                                        
+        107 Diana                                                                                                                                                                                       
+        133 Jason                                                                                                                                                                                       
+        128 Steven                                                                                                                                                                                      
+        131 James                                                                                                                                                                                       
+        164 Mattea                                                                                                                                                                                      
+        143 Randall                                                                                                                                                                                     
+        203 Susan                                                                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        194 Samuel                                                                                                                                                                                      
+        158 Allan                                                                                                                                                                                       
+        126 Irene                                                                                                                                                                                       
+        124 Kevin                                                                                                                                                                                       
+        125 Julia                                                                                                                                                                                       
+        198 Donald                                                                                                                                                                                      
+        153 Christopher                                                                                                                                                                                 
+        132 TJ                                                                                                                                                                                          
+        168 Lisa                                                                                                                                                                                        
+        146 Karen                                                                                                                                                                                       
+        106 Valli                                                                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        140 Joshua                                                                                                                                                                                      
+        191 Randall                                                                                                                                                                                     
+        136 Hazel                                                                                                                                                                                       
+        113 Luis                                                                                                                                                                                        
+        141 Trenna                                                                                                                                                                                      
+        114 Den                                                                                                                                                                                         
+        134 Michael                                                                                                                                                                                     
+        145 John                                                                                                                                                                                        
+        184 Nandita                                                                                                                                                                                     
+        111 Ismael                                                                                                                                                                                      
+        139 John                                                                                                                                                                                        
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        161 Sarath                                                                                                                                                                                      
+        159 Lindsey                                                                                                                                                                                     
+        171 William                                                                                                                                                                                     
+        138 Stephen                                                                                                                                                                                     
+        182 Martha                                                                                                                                                                                      
+        157 Patrick                                                                                                                                                                                     
+        176 Jonathon                                                                                                                                                                                    
+        180 Winston                                                                                                                                                                                     
+        117 Sigal                                                                                                                                                                                       
+        150 Peter                                                                                                                                                                                       
+        155 Oliver                                                                                                                                                                                      
+
+EMPLOYEE_ID FIRST_NAME                                                                                                                                                                                  
+----------- ----------------------------------------                                                                                                                                                    
+        112 Jose Manuel                                                                                                                                                                                 
+        144 Peter                                                                                                                                                                                       
+        162 Clara                                                                                                                                                                                       
+        123 Shanta                                                                                                                                                                                      
+        196 Alana                                                                                                                                                                                       
+        120 Matthew                                                                                                                                                                                     
+        200 Jennifer                                                                                                                                                                                    
+        149 Eleni                                                                                                                                                                                       
+
+107 rows selected.
+
+SQL> select employee_id
+  2  from employees
+  3  where Peter
+  4  ;
+
+*
+ERROR at line 4:
+ORA-00920: invalid relational operator 
+
+
+SQL> where Peter;
+SP2-0734: unknown command beginning "where Pete..." - rest of line ignored.
+SQL> select employee_id
+  2  from employees
+  3  where Peter;
+where Peter
+          *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> select employee_id
+  2  from employees
+  3  where first_name peter;
+where first_name peter
+                 *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> select employee_id
+  2  from employees
+  3  where first_name = 'peter';
+
+no rows selected
+
+SQL> select *
+  2  from employees
+  3  where first_name like 'peter';
+
+no rows selected
+
+SQL> select *
+  2  from employees
+  3  where first_name like '_e%';
+
+EMPLOYEE_ID FIRST_NAME                               LAST_NAME                                          EMAIL                                              PHONE_NUMBER                                 
+----------- ---------------------------------------- -------------------------------------------------- -------------------------------------------------- ----------------------------------------     
+HIRE_DAT JOB_ID                   SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                                                                                        
+-------- -------------------- ---------- -------------- ---------- -------------                                                                                                                        
+        101 Neena                                    Kochhar                                            NKOCHHAR                                           515.123.4568                                 
+05/09/21 AD_VP                     17000                       100            90                                                                                                                        
+                                                                                                                                                                                                        
+        102 Lex                                      De Haan                                            LDEHAAN                                            515.123.4569                                 
+01/01/13 AD_VP                     17000                       100            90                                                                                                                        
+                                                                                                                                                                                                        
+        114 Den                                      Raphaely                                           DRAPHEAL                                           515.127.4561                                 
+02/12/07 PU_MAN                    11000                       100            30                                                                                                                        
+                                                                                                                                                                                                        
+
+EMPLOYEE_ID FIRST_NAME                               LAST_NAME                                          EMAIL                                              PHONE_NUMBER                                 
+----------- ---------------------------------------- -------------------------------------------------- -------------------------------------------------- ----------------------------------------     
+HIRE_DAT JOB_ID                   SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                                                                                        
+-------- -------------------- ---------- -------------- ---------- -------------                                                                                                                        
+        124 Kevin                                    Mourgos                                            KMOURGOS                                           650.123.5234                                 
+07/11/16 ST_MAN                     5800                       100            50                                                                                                                        
+                                                                                                                                                                                                        
+        137 Renske                                   Ladwig                                             RLADWIG                                            650.121.1234                                 
+03/07/14 ST_CLERK                   3600                       123            50                                                                                                                        
+                                                                                                                                                                                                        
+        144 Peter                                    Vargas                                             PVARGAS                                            650.121.2004                                 
+06/07/09 ST_CLERK                   2500                       124            50                                                                                                                        
+                                                                                                                                                                                                        
+
+EMPLOYEE_ID FIRST_NAME                               LAST_NAME                                          EMAIL                                              PHONE_NUMBER                                 
+----------- ---------------------------------------- -------------------------------------------------- -------------------------------------------------- ----------------------------------------     
+HIRE_DAT JOB_ID                   SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                                                                                        
+-------- -------------------- ---------- -------------- ---------- -------------                                                                                                                        
+        148 Gerald                                   Cambrault                                          GCAMBRAU                                           011.44.1344.619268                           
+07/10/15 SA_MAN                    11000             .3        100            80                                                                                                                        
+                                                                                                                                                                                                        
+        150 Peter                                    Tucker                                             PTUCKER                                            011.44.1344.129268                           
+05/01/30 SA_REP                    10000             .3        145            80                                                                                                                        
+                                                                                                                                                                                                        
+        152 Peter                                    Hall                                               PHALL                                              011.44.1344.478968                           
+05/08/20 SA_REP                     9000            .25        145            80                                                                                                                        
+                                                                                                                                                                                                        
+
+EMPLOYEE_ID FIRST_NAME                               LAST_NAME                                          EMAIL                                              PHONE_NUMBER                                 
+----------- ---------------------------------------- -------------------------------------------------- -------------------------------------------------- ----------------------------------------     
+HIRE_DAT JOB_ID                   SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                                                                                        
+-------- -------------------- ---------- -------------- ---------- -------------                                                                                                                        
+        181 Jean                                     Fleaur                                             JFLEAUR                                            650.507.9877                                 
+06/02/23 SH_CLERK                   3100                       120            50                                                                                                                        
+                                                                                                                                                                                                        
+        188 Kelly                                    Chung                                              KCHUNG                                             650.505.1876                                 
+05/06/14 SH_CLERK                   3800                       122            50                                                                                                                        
+                                                                                                                                                                                                        
+        189 Jennifer                                 Dilly                                              JDILLY                                             650.505.2876                                 
+05/08/13 SH_CLERK                   3600                       122            50                                                                                                                        
+                                                                                                                                                                                                        
+
+EMPLOYEE_ID FIRST_NAME                               LAST_NAME                                          EMAIL                                              PHONE_NUMBER                                 
+----------- ---------------------------------------- -------------------------------------------------- -------------------------------------------------- ----------------------------------------     
+HIRE_DAT JOB_ID                   SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                                                                                        
+-------- -------------------- ---------- -------------- ---------- -------------                                                                                                                        
+        197 Kevin                                    Feeney                                             KFEENEY                                            650.507.9822                                 
+06/05/23 SH_CLERK                   3000                       124            50                                                                                                                        
+                                                                                                                                                                                                        
+        200 Jennifer                                 Whalen                                             JWHALEN                                            515.123.4444                                 
+03/09/17 AD_ASST                    4400                       101            10                                                                                                                        
+                                                                                                                                                                                                        
+        204 Hermann                                  Baer                                               HBAER                                              515.123.8888                                 
+02/06/07 PR_REP                    10000                       101            70                                                                                                                        
+                                                                                                                                                                                                        
+
+15 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select employee_id, first_name, email
+  2* from employees
+SQL> /
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        100 Steven                                   SKING                                                                                                                                              
+        101 Neena                                    NKOCHHAR                                                                                                                                           
+        102 Lex                                      LDEHAAN                                                                                                                                            
+        103 Alexander                                AHUNOLD                                                                                                                                            
+        104 Bruce                                    BERNST                                                                                                                                             
+        105 David                                    DAUSTIN                                                                                                                                            
+        106 Valli                                    VPATABAL                                                                                                                                           
+        107 Diana                                    DLORENTZ                                                                                                                                           
+        108 Nancy                                    NGREENBE                                                                                                                                           
+        109 Daniel                                   DFAVIET                                                                                                                                            
+        110 John                                     JCHEN                                                                                                                                              
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        111 Ismael                                   ISCIARRA                                                                                                                                           
+        112 Jose Manuel                              JMURMAN                                                                                                                                            
+        113 Luis                                     LPOPP                                                                                                                                              
+        114 Den                                      DRAPHEAL                                                                                                                                           
+        115 Alexander                                AKHOO                                                                                                                                              
+        116 Shelli                                   SBAIDA                                                                                                                                             
+        117 Sigal                                    STOBIAS                                                                                                                                            
+        118 Guy                                      GHIMURO                                                                                                                                            
+        119 Karen                                    KCOLMENA                                                                                                                                           
+        120 Matthew                                  MWEISS                                                                                                                                             
+        121 Adam                                     AFRIPP                                                                                                                                             
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        122 Payam                                    PKAUFLIN                                                                                                                                           
+        123 Shanta                                   SVOLLMAN                                                                                                                                           
+        124 Kevin                                    KMOURGOS                                                                                                                                           
+        125 Julia                                    JNAYER                                                                                                                                             
+        126 Irene                                    IMIKKILI                                                                                                                                           
+        127 James                                    JLANDRY                                                                                                                                            
+        128 Steven                                   SMARKLE                                                                                                                                            
+        129 Laura                                    LBISSOT                                                                                                                                            
+        130 Mozhe                                    MATKINSO                                                                                                                                           
+        131 James                                    JAMRLOW                                                                                                                                            
+        132 TJ                                       TJOLSON                                                                                                                                            
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        133 Jason                                    JMALLIN                                                                                                                                            
+        134 Michael                                  MROGERS                                                                                                                                            
+        135 Ki                                       KGEE                                                                                                                                               
+        136 Hazel                                    HPHILTAN                                                                                                                                           
+        137 Renske                                   RLADWIG                                                                                                                                            
+        138 Stephen                                  SSTILES                                                                                                                                            
+        139 John                                     JSEO                                                                                                                                               
+        140 Joshua                                   JPATEL                                                                                                                                             
+        141 Trenna                                   TRAJS                                                                                                                                              
+        142 Curtis                                   CDAVIES                                                                                                                                            
+        143 Randall                                  RMATOS                                                                                                                                             
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        144 Peter                                    PVARGAS                                                                                                                                            
+        145 John                                     JRUSSEL                                                                                                                                            
+        146 Karen                                    KPARTNER                                                                                                                                           
+        147 Alberto                                  AERRAZUR                                                                                                                                           
+        148 Gerald                                   GCAMBRAU                                                                                                                                           
+        149 Eleni                                    EZLOTKEY                                                                                                                                           
+        150 Peter                                    PTUCKER                                                                                                                                            
+        151 David                                    DBERNSTE                                                                                                                                           
+        152 Peter                                    PHALL                                                                                                                                              
+        153 Christopher                              COLSEN                                                                                                                                             
+        154 Nanette                                  NCAMBRAU                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        155 Oliver                                   OTUVAULT                                                                                                                                           
+        156 Janette                                  JKING                                                                                                                                              
+        157 Patrick                                  PSULLY                                                                                                                                             
+        158 Allan                                    AMCEWEN                                                                                                                                            
+        159 Lindsey                                  LSMITH                                                                                                                                             
+        160 Louise                                   LDORAN                                                                                                                                             
+        161 Sarath                                   SSEWALL                                                                                                                                            
+        162 Clara                                    CVISHNEY                                                                                                                                           
+        163 Danielle                                 DGREENE                                                                                                                                            
+        164 Mattea                                   MMARVINS                                                                                                                                           
+        165 David                                    DLEE                                                                                                                                               
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        166 Sundar                                   SANDE                                                                                                                                              
+        167 Amit                                     ABANDA                                                                                                                                             
+        168 Lisa                                     LOZER                                                                                                                                              
+        169 Harrison                                 HBLOOM                                                                                                                                             
+        170 Tayler                                   TFOX                                                                                                                                               
+        171 William                                  WSMITH                                                                                                                                             
+        172 Elizabeth                                EBATES                                                                                                                                             
+        173 Sundita                                  SKUMAR                                                                                                                                             
+        174 Ellen                                    EABEL                                                                                                                                              
+        175 Alyssa                                   AHUTTON                                                                                                                                            
+        176 Jonathon                                 JTAYLOR                                                                                                                                            
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        177 Jack                                     JLIVINGS                                                                                                                                           
+        178 Kimberely                                KGRANT                                                                                                                                             
+        179 Charles                                  CJOHNSON                                                                                                                                           
+        180 Winston                                  WTAYLOR                                                                                                                                            
+        181 Jean                                     JFLEAUR                                                                                                                                            
+        182 Martha                                   MSULLIVA                                                                                                                                           
+        183 Girard                                   GGEONI                                                                                                                                             
+        184 Nandita                                  NSARCHAN                                                                                                                                           
+        185 Alexis                                   ABULL                                                                                                                                              
+        186 Julia                                    JDELLING                                                                                                                                           
+        187 Anthony                                  ACABRIO                                                                                                                                            
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        188 Kelly                                    KCHUNG                                                                                                                                             
+        189 Jennifer                                 JDILLY                                                                                                                                             
+        190 Timothy                                  TGATES                                                                                                                                             
+        191 Randall                                  RPERKINS                                                                                                                                           
+        192 Sarah                                    SBELL                                                                                                                                              
+        193 Britney                                  BEVERETT                                                                                                                                           
+        194 Samuel                                   SMCCAIN                                                                                                                                            
+        195 Vance                                    VJONES                                                                                                                                             
+        196 Alana                                    AWALSH                                                                                                                                             
+        197 Kevin                                    KFEENEY                                                                                                                                            
+        198 Donald                                   DOCONNEL                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               EMAIL                                                                                                                                              
+----------- ---------------------------------------- --------------------------------------------------                                                                                                 
+        199 Douglas                                  DGRANT                                                                                                                                             
+        200 Jennifer                                 JWHALEN                                                                                                                                            
+        201 Michael                                  MHARTSTE                                                                                                                                           
+        202 Pat                                      PFAY                                                                                                                                               
+        203 Susan                                    SMAVRIS                                                                                                                                            
+        204 Hermann                                  HBAER                                                                                                                                              
+        205 Shelley                                  SHIGGINS                                                                                                                                           
+        206 William                                  WGIETZ                                                                                                                                             
+
+107 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select employee_id, first_name, phone_number
+  2* from employees
+SQL> /
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        100 Steven                                   515.123.4567                                                                                                                                       
+        101 Neena                                    515.123.4568                                                                                                                                       
+        102 Lex                                      515.123.4569                                                                                                                                       
+        103 Alexander                                590.423.4567                                                                                                                                       
+        104 Bruce                                    590.423.4568                                                                                                                                       
+        105 David                                    590.423.4569                                                                                                                                       
+        106 Valli                                    590.423.4560                                                                                                                                       
+        107 Diana                                    590.423.5567                                                                                                                                       
+        108 Nancy                                    515.124.4569                                                                                                                                       
+        109 Daniel                                   515.124.4169                                                                                                                                       
+        110 John                                     515.124.4269                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        111 Ismael                                   515.124.4369                                                                                                                                       
+        112 Jose Manuel                              515.124.4469                                                                                                                                       
+        113 Luis                                     515.124.4567                                                                                                                                       
+        114 Den                                      515.127.4561                                                                                                                                       
+        115 Alexander                                515.127.4562                                                                                                                                       
+        116 Shelli                                   515.127.4563                                                                                                                                       
+        117 Sigal                                    515.127.4564                                                                                                                                       
+        118 Guy                                      515.127.4565                                                                                                                                       
+        119 Karen                                    515.127.4566                                                                                                                                       
+        120 Matthew                                  650.123.1234                                                                                                                                       
+        121 Adam                                     650.123.2234                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        122 Payam                                    650.123.3234                                                                                                                                       
+        123 Shanta                                   650.123.4234                                                                                                                                       
+        124 Kevin                                    650.123.5234                                                                                                                                       
+        125 Julia                                    650.124.1214                                                                                                                                       
+        126 Irene                                    650.124.1224                                                                                                                                       
+        127 James                                    650.124.1334                                                                                                                                       
+        128 Steven                                   650.124.1434                                                                                                                                       
+        129 Laura                                    650.124.5234                                                                                                                                       
+        130 Mozhe                                    650.124.6234                                                                                                                                       
+        131 James                                    650.124.7234                                                                                                                                       
+        132 TJ                                       650.124.8234                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        133 Jason                                    650.127.1934                                                                                                                                       
+        134 Michael                                  650.127.1834                                                                                                                                       
+        135 Ki                                       650.127.1734                                                                                                                                       
+        136 Hazel                                    650.127.1634                                                                                                                                       
+        137 Renske                                   650.121.1234                                                                                                                                       
+        138 Stephen                                  650.121.2034                                                                                                                                       
+        139 John                                     650.121.2019                                                                                                                                       
+        140 Joshua                                   650.121.1834                                                                                                                                       
+        141 Trenna                                   650.121.8009                                                                                                                                       
+        142 Curtis                                   650.121.2994                                                                                                                                       
+        143 Randall                                  650.121.2874                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        144 Peter                                    650.121.2004                                                                                                                                       
+        145 John                                     011.44.1344.429268                                                                                                                                 
+        146 Karen                                    011.44.1344.467268                                                                                                                                 
+        147 Alberto                                  011.44.1344.429278                                                                                                                                 
+        148 Gerald                                   011.44.1344.619268                                                                                                                                 
+        149 Eleni                                    011.44.1344.429018                                                                                                                                 
+        150 Peter                                    011.44.1344.129268                                                                                                                                 
+        151 David                                    011.44.1344.345268                                                                                                                                 
+        152 Peter                                    011.44.1344.478968                                                                                                                                 
+        153 Christopher                              011.44.1344.498718                                                                                                                                 
+        154 Nanette                                  011.44.1344.987668                                                                                                                                 
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        155 Oliver                                   011.44.1344.486508                                                                                                                                 
+        156 Janette                                  011.44.1345.429268                                                                                                                                 
+        157 Patrick                                  011.44.1345.929268                                                                                                                                 
+        158 Allan                                    011.44.1345.829268                                                                                                                                 
+        159 Lindsey                                  011.44.1345.729268                                                                                                                                 
+        160 Louise                                   011.44.1345.629268                                                                                                                                 
+        161 Sarath                                   011.44.1345.529268                                                                                                                                 
+        162 Clara                                    011.44.1346.129268                                                                                                                                 
+        163 Danielle                                 011.44.1346.229268                                                                                                                                 
+        164 Mattea                                   011.44.1346.329268                                                                                                                                 
+        165 David                                    011.44.1346.529268                                                                                                                                 
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        166 Sundar                                   011.44.1346.629268                                                                                                                                 
+        167 Amit                                     011.44.1346.729268                                                                                                                                 
+        168 Lisa                                     011.44.1343.929268                                                                                                                                 
+        169 Harrison                                 011.44.1343.829268                                                                                                                                 
+        170 Tayler                                   011.44.1343.729268                                                                                                                                 
+        171 William                                  011.44.1343.629268                                                                                                                                 
+        172 Elizabeth                                011.44.1343.529268                                                                                                                                 
+        173 Sundita                                  011.44.1343.329268                                                                                                                                 
+        174 Ellen                                    011.44.1644.429267                                                                                                                                 
+        175 Alyssa                                   011.44.1644.429266                                                                                                                                 
+        176 Jonathon                                 011.44.1644.429265                                                                                                                                 
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        177 Jack                                     011.44.1644.429264                                                                                                                                 
+        178 Kimberely                                011.44.1644.429263                                                                                                                                 
+        179 Charles                                  011.44.1644.429262                                                                                                                                 
+        180 Winston                                  650.507.9876                                                                                                                                       
+        181 Jean                                     650.507.9877                                                                                                                                       
+        182 Martha                                   650.507.9878                                                                                                                                       
+        183 Girard                                   650.507.9879                                                                                                                                       
+        184 Nandita                                  650.509.1876                                                                                                                                       
+        185 Alexis                                   650.509.2876                                                                                                                                       
+        186 Julia                                    650.509.3876                                                                                                                                       
+        187 Anthony                                  650.509.4876                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        188 Kelly                                    650.505.1876                                                                                                                                       
+        189 Jennifer                                 650.505.2876                                                                                                                                       
+        190 Timothy                                  650.505.3876                                                                                                                                       
+        191 Randall                                  650.505.4876                                                                                                                                       
+        192 Sarah                                    650.501.1876                                                                                                                                       
+        193 Britney                                  650.501.2876                                                                                                                                       
+        194 Samuel                                   650.501.3876                                                                                                                                       
+        195 Vance                                    650.501.4876                                                                                                                                       
+        196 Alana                                    650.507.9811                                                                                                                                       
+        197 Kevin                                    650.507.9822                                                                                                                                       
+        198 Donald                                   650.507.9833                                                                                                                                       
+
+EMPLOYEE_ID FIRST_NAME                               PHONE_NUMBER                                                                                                                                       
+----------- ---------------------------------------- ----------------------------------------                                                                                                           
+        199 Douglas                                  650.507.9844                                                                                                                                       
+        200 Jennifer                                 515.123.4444                                                                                                                                       
+        201 Michael                                  515.123.5555                                                                                                                                       
+        202 Pat                                      603.123.6666                                                                                                                                       
+        203 Susan                                    515.123.7777                                                                                                                                       
+        204 Hermann                                  515.123.8888                                                                                                                                       
+        205 Shelley                                  515.123.8080                                                                                                                                       
+        206 William                                  515.123.8181                                                                                                                                       
+
+107 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select employee_id, first_name, hire_date
+  2* from employees
+SQL> /
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        100 Steven                                   03/06/17                                                                                                                                           
+        101 Neena                                    05/09/21                                                                                                                                           
+        102 Lex                                      01/01/13                                                                                                                                           
+        103 Alexander                                06/01/03                                                                                                                                           
+        104 Bruce                                    07/05/21                                                                                                                                           
+        105 David                                    05/06/25                                                                                                                                           
+        106 Valli                                    06/02/05                                                                                                                                           
+        107 Diana                                    07/02/07                                                                                                                                           
+        108 Nancy                                    02/08/17                                                                                                                                           
+        109 Daniel                                   02/08/16                                                                                                                                           
+        110 John                                     05/09/28                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        111 Ismael                                   05/09/30                                                                                                                                           
+        112 Jose Manuel                              06/03/07                                                                                                                                           
+        113 Luis                                     07/12/07                                                                                                                                           
+        114 Den                                      02/12/07                                                                                                                                           
+        115 Alexander                                03/05/18                                                                                                                                           
+        116 Shelli                                   05/12/24                                                                                                                                           
+        117 Sigal                                    05/07/24                                                                                                                                           
+        118 Guy                                      06/11/15                                                                                                                                           
+        119 Karen                                    07/08/10                                                                                                                                           
+        120 Matthew                                  04/07/18                                                                                                                                           
+        121 Adam                                     05/04/10                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        122 Payam                                    03/05/01                                                                                                                                           
+        123 Shanta                                   05/10/10                                                                                                                                           
+        124 Kevin                                    07/11/16                                                                                                                                           
+        125 Julia                                    05/07/16                                                                                                                                           
+        126 Irene                                    06/09/28                                                                                                                                           
+        127 James                                    07/01/14                                                                                                                                           
+        128 Steven                                   08/03/08                                                                                                                                           
+        129 Laura                                    05/08/20                                                                                                                                           
+        130 Mozhe                                    05/10/30                                                                                                                                           
+        131 James                                    05/02/16                                                                                                                                           
+        132 TJ                                       07/04/10                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        133 Jason                                    04/06/14                                                                                                                                           
+        134 Michael                                  06/08/26                                                                                                                                           
+        135 Ki                                       07/12/12                                                                                                                                           
+        136 Hazel                                    08/02/06                                                                                                                                           
+        137 Renske                                   03/07/14                                                                                                                                           
+        138 Stephen                                  05/10/26                                                                                                                                           
+        139 John                                     06/02/12                                                                                                                                           
+        140 Joshua                                   06/04/06                                                                                                                                           
+        141 Trenna                                   03/10/17                                                                                                                                           
+        142 Curtis                                   05/01/29                                                                                                                                           
+        143 Randall                                  06/03/15                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        144 Peter                                    06/07/09                                                                                                                                           
+        145 John                                     04/10/01                                                                                                                                           
+        146 Karen                                    05/01/05                                                                                                                                           
+        147 Alberto                                  05/03/10                                                                                                                                           
+        148 Gerald                                   07/10/15                                                                                                                                           
+        149 Eleni                                    08/01/29                                                                                                                                           
+        150 Peter                                    05/01/30                                                                                                                                           
+        151 David                                    05/03/24                                                                                                                                           
+        152 Peter                                    05/08/20                                                                                                                                           
+        153 Christopher                              06/03/30                                                                                                                                           
+        154 Nanette                                  06/12/09                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        155 Oliver                                   07/11/23                                                                                                                                           
+        156 Janette                                  04/01/30                                                                                                                                           
+        157 Patrick                                  04/03/04                                                                                                                                           
+        158 Allan                                    04/08/01                                                                                                                                           
+        159 Lindsey                                  05/03/10                                                                                                                                           
+        160 Louise                                   05/12/15                                                                                                                                           
+        161 Sarath                                   06/11/03                                                                                                                                           
+        162 Clara                                    05/11/11                                                                                                                                           
+        163 Danielle                                 07/03/19                                                                                                                                           
+        164 Mattea                                   08/01/24                                                                                                                                           
+        165 David                                    08/02/23                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        166 Sundar                                   08/03/24                                                                                                                                           
+        167 Amit                                     08/04/21                                                                                                                                           
+        168 Lisa                                     05/03/11                                                                                                                                           
+        169 Harrison                                 06/03/23                                                                                                                                           
+        170 Tayler                                   06/01/24                                                                                                                                           
+        171 William                                  07/02/23                                                                                                                                           
+        172 Elizabeth                                07/03/24                                                                                                                                           
+        173 Sundita                                  08/04/21                                                                                                                                           
+        174 Ellen                                    04/05/11                                                                                                                                           
+        175 Alyssa                                   05/03/19                                                                                                                                           
+        176 Jonathon                                 06/03/24                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        177 Jack                                     06/04/23                                                                                                                                           
+        178 Kimberely                                07/05/24                                                                                                                                           
+        179 Charles                                  08/01/04                                                                                                                                           
+        180 Winston                                  06/01/24                                                                                                                                           
+        181 Jean                                     06/02/23                                                                                                                                           
+        182 Martha                                   07/06/21                                                                                                                                           
+        183 Girard                                   08/02/03                                                                                                                                           
+        184 Nandita                                  04/01/27                                                                                                                                           
+        185 Alexis                                   05/02/20                                                                                                                                           
+        186 Julia                                    06/06/24                                                                                                                                           
+        187 Anthony                                  07/02/07                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        188 Kelly                                    05/06/14                                                                                                                                           
+        189 Jennifer                                 05/08/13                                                                                                                                           
+        190 Timothy                                  06/07/11                                                                                                                                           
+        191 Randall                                  07/12/19                                                                                                                                           
+        192 Sarah                                    04/02/04                                                                                                                                           
+        193 Britney                                  05/03/03                                                                                                                                           
+        194 Samuel                                   06/07/01                                                                                                                                           
+        195 Vance                                    07/03/17                                                                                                                                           
+        196 Alana                                    06/04/24                                                                                                                                           
+        197 Kevin                                    06/05/23                                                                                                                                           
+        198 Donald                                   07/06/21                                                                                                                                           
+
+EMPLOYEE_ID FIRST_NAME                               HIRE_DAT                                                                                                                                           
+----------- ---------------------------------------- --------                                                                                                                                           
+        199 Douglas                                  08/01/13                                                                                                                                           
+        200 Jennifer                                 03/09/17                                                                                                                                           
+        201 Michael                                  04/02/17                                                                                                                                           
+        202 Pat                                      05/08/17                                                                                                                                           
+        203 Susan                                    02/06/07                                                                                                                                           
+        204 Hermann                                  02/06/07                                                                                                                                           
+        205 Shelley                                  02/06/07                                                                                                                                           
+        206 William                                  02/06/07                                                                                                                                           
+
+107 rows selected.
+
+SQL> spool off
