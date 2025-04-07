@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>06_SimpleForm.html</title>
+</head>
+<body>
+<form action="xxxxx.jsp" >
+	<fieldset>
+	<legend>회원가입</legend>
+	<ol>
+		<li>
+		<label for='irum'>이름</label>
+		<input id='irum' name='irum' type ='text'/>
+		</li>
+		
+		
+		<li>
+		<label for='gender'>성별</label>
+		<input id = 'gender' name='gender' type ='radio' value='male' checked='checked'/>남자
+		<input id = 'gender' name='gender' type ='radio' value='female'/>여자
+		</li>
+		
+		<li>
+		<label for='job'>직업</label>
+		<select id="job" name="job">
+  		<option value="prog">프로그래머</option>
+  		<option value="design">디자이너</option>
+  		<option value="it">IT</option>
+  		<option value="java">java개발자</option>
+		</select>
+		</li>
+		
+		
+		<li>
+		<label for='hob'>취미</label>
+		<input id ='hob' name = 'hob' value ='sleep' type="checkbox" checked='checked'>잠자기
+		<input id ='hob' name = 'hob' value ='eat' type="checkbox">먹기
+		<input id ='hob' name = 'hob' value ='breathe' type="checkbox">숨쉬기
+		<input id ='hob' name = 'hob' value ='nothing' type="checkbox">멍때리기
+		</li>
+		
+		<li>
+		<label for='friend'>애인</label>
+		<input id = 'friend' name = 'friend' type ='radio' value='yes'/>있다
+		<input id = 'friend' name = 'friend' type ='radio' value='no'/>없다
+		</li>
+		
+		<li>
+			<label for='tour'>여행하고 싶은 나라</label>
+			<input id = 'tour' type = 'text' list='coun'/>
+			<datalist id = 'coun'>
+				<option>가나</option>
+				<option>미국</option>
+				<option>일본</option>
+			</datalist>
+		</li>
+		
+		<li>
+		<input type ='submit' value ='확인'/>
+		<input type ='reset' value ='취소'/>
+		</li>
+	</ol>
+	</fieldset>
+</form>
+</body>
+</html>
